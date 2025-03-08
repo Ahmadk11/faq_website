@@ -2,6 +2,23 @@
 
 require_once '../connection/connection.php';
 
+$users = [
+    ['fullName' => 'Ahmad Ahmad', 'email' => 'ahmad.ahmad@example.com', 'password' => 'password123'],
+    ['fullName' => 'Ahmad Jad', 'email' => 'ahmad.jad@example.com', 'password' => 'password123'],
+    ['fullName' => 'Ahmad Ali', 'email' => 'ahmad.ali@example.com', 'password' => 'password123']
+];
+
+foreach ($users as $user) {
+    $fullName = $user['fullName'];
+    $email = $user['email'];
+    $password = password_hash($user['password'], PASSWORD_DEFAULT);
+    
+    $query = "INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("sss", $fullName, $email, $password);
+    $stmt->execute();
+}
+
 $questions = [
     ['question' => 'What is the software development life cycle?', 'answer' => 'The software development life cycle is a conceptual framework that putline the stages involved in the development of a software application from initial feasibility stdu through deployment and maintenance.'],
     ['question' => 'What are three broad categories of SDLC models?', 'answer' => 'The three categories of SDLC models are, the first is Linear Models which is a sequential models where one stage leads to the next (e.g. Waterfall). The second is the Iterative Models which is a model the revisit earlier stages for continuous improvement (e.g. Spiral). The third one is Combined Models which is a mix of linear and iterative approaches.'],
@@ -17,19 +34,13 @@ $questions = [
 
 
 foreach ($questions as $question) {
- 
-    $stmt = $conn->prepare("INSERT INTO questions (question, answer) VALUES (?, ?)");
-
-    $stmt->bind_param("ss", $question['question'], $question['answer']);
-
-    if ($stmt->execute()) {
-        echo "Question: '" . $question['question'] . "' inserted successfully.\n";
-    } else {
-        echo "Error inserting question: " . $stmt->error . "\n";
-    }
-
-    $stmt->close();
+    $questionText = $question['question'];
+    $answer = $question['answer'];
+    
+    $query = "INSERT INTO questions (question, answer) VALUES (?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ss", $questionText, $answer);
+    $stmt->execute();
 }
 
-$conn->close();
 ?>
