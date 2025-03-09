@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const response = await axios.post('backend/login.php', data);
+            console.log(response.data);
 
             if (response.data.message) {
                 alert(response.data.message);
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const response = await axios.post('backend/signup.php', data);
+            console.log(response.data);
 
             if (response.data.message) {
                 alert(response.data.message);
