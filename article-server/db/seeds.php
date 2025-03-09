@@ -3,17 +3,17 @@
 require_once '../connection/connection.php';
 
 $users = [
-    ['fullName' => 'Ahmad Ahmad', 'email' => 'ahmad.ahmad@example.com', 'password' => 'password123'],
-    ['fullName' => 'Ahmad Jad', 'email' => 'ahmad.jad@example.com', 'password' => 'password123'],
-    ['fullName' => 'Ahmad Ali', 'email' => 'ahmad.ali@example.com', 'password' => 'password123']
+    ['full_name' => 'Ahmad Ahmad', 'email' => 'ahmad.ahmad@example.com', 'password' => 'password123'],
+    ['full_name' => 'Ahmad Jad', 'email' => 'ahmad.jad@example.com', 'password' => 'password123'],
+    ['full_name' => 'Ahmad Ali', 'email' => 'ahmad.ali@example.com', 'password' => 'password123']
 ];
 
 foreach ($users as $user) {
-    $fullName = $user['fullName'];
+    $fullName = $user['full_name'];
     $email = $user['email'];
     $password = password_hash($user['password'], PASSWORD_DEFAULT);
     
-    $query = "INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)";
+    $query = "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sss", $fullName, $email, $password);
     $stmt->execute();

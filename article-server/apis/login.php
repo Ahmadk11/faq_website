@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'message' => 'Login successful',
                 'user' => [
                     'id' => $userData['id'],
-                    'fullName' => $userData['fullName'],
+                    'fullName' => $userData['full_name'],
                     'email' => $userData['email']
                 ]
             ]);

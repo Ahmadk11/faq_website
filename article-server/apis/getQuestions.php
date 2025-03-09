@@ -1,7 +1,7 @@
 <?php
 
 require_once '../connection/connection.php';
-require_once '../models/Question.php';
+require_once '../models/Quest.php';
 
 header('Content-Type: application/json');
 

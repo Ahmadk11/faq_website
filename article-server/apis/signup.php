@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $fullName = isset($_POST['fullName']) ? $_POST['fullName'] : '';
+    $fullName = isset($_POST['full_name']) ? $_POST['full_name'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
 
